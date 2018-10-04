@@ -9,5 +9,6 @@ import com.apap.tutorial4.model.CarModel;
  */
 public interface CarService {
 	void addCar(CarModel car);
-	
+	public void deleteById(Long id);
+	CarModel getCar(Long id);
 }

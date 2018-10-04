@@ -6,6 +6,28 @@
 	<body>
 		<h3 th:text="'Alamat: ' + ${dealer.alamat}"></h3>
 		<h3 th:text="'Telepon: ' + ${dealer.noTelp}"></h3>
-		<a th:href="@{/car/add/{id}(id=${dealer.id})}">Add car</a>
+		
+		<h3>List Mobil:</h3>
+		<table>
+    		 <tr>
+        		<th scope="col">Brand</th>
+       			<th scope="col">Type</th>
+        		<th scope="col">Price</th>
+        		<th scope="col">Amount</th>
+    		</tr>
+   			<tr th:each="car : ${car}">
+   				<td th:text="${car.brand}"></td>
+       			<td th:text="${car.type}"></td> 
+       			<td th:text="${car.price}"></td>
+       			<td th:text="${car.amount}"></td>
+       			<td><a th:href="@{'/car/delete/' + ${car.id}}">Delete Car</a></td>
+   			</tr>
+   		</table>
+   		<p></p>
+		<a th:href="@{'/car/add/' + ${dealer.id}}">Add Car</a>
+		<p></p>
+		<a th:href="@{'/dealer/delete/'}+ ${dealer.id}">Delete Dealer</a>
+		
+		
 	</body>
 </html>

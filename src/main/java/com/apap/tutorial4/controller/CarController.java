@@ -38,4 +38,11 @@ public class CarController {
 		carService.addCar(car);
 		return "add";
 	}
+	@RequestMapping(value="/car/delete/{id}", method=RequestMethod.GET)
+	private String deleteCar(@PathVariable(value = "id") Long id, Model model) {
+			carService.deleteById(id);
+			return "delete";
+	}
+	
+	
 }

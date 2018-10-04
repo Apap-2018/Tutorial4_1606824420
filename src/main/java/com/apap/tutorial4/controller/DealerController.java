@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,9 +46,24 @@ public class DealerController {
 	@RequestMapping(value = "/dealer/view", method = RequestMethod.GET)
 	private String viewDealer(@RequestParam ("dealerId") long dealerId, Model model) {
 		DealerModel dealer = dealerService.getDealerDetailById(dealerId).get();
-		
+		List<CarModel> car = dealer.getListCar();
 		model.addAttribute("dealer", dealer);
-		model.addAttribute("id", dealerId);
+		model.addAttribute("car", car);
 		return "view-dealer";
+	}
+	@RequestMapping(value="/dealer/viewall", method = RequestMethod.GET)
+	private String viewDealer(Model model) {
+		List<DealerModel> temp = dealerService.getAllDealer();
+		model.addAttribute("dealer", temp);
+		return "viewall";
+	}
+	@RequestMapping(value="/dealer/delete/{id}", method=RequestMethod.GET)
+	private String deleteDealer(@PathVariable(value = "id") Long dealerId, Model model) {
+		if(dealerService.getDealerDetailById(dealerId).isPresent()) {
+			DealerModel temp = dealerService.getDealerDetailById(dealerId).get();
+			dealerService.deleteDealer(temp);
+			return "delete";
+			}
+		return "error";
 	}
 }

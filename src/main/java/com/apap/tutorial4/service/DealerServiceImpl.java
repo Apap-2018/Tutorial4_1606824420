@@ -1,5 +1,6 @@
 package com.apap.tutorial4.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -28,4 +29,22 @@ public class DealerServiceImpl implements DealerService{
 	public void addDealer(DealerModel dealer) {
 		dealerDb.save(dealer);
 	}
+
+	@Override
+	public List<DealerModel> getAllDealer() {
+		// TODO Auto-generated method stub
+		return dealerDb.findAll();
+	}
+
+	@Override
+	public DealerDb allDealer() {
+		// TODO Auto-generated method stub
+		return dealerDb;
+	}
+
+	@Override
+	public void deleteDealer(DealerModel dealer) {
+		dealerDb.delete(dealer);
+	}
+
 }

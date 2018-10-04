@@ -21,4 +21,12 @@ public class CarServiceImpl implements CarService {
 	public void addCar(CarModel car) {
 		carDb.save(car);
 	}
+	@Override
+	public void deleteById(Long id) {
+		// TODO Auto-generated method stub
+		carDb.deleteById(id);
+	}
+	public CarModel getCar(Long id) {
+		return carDb.findById(id).get();
+	}
 }
