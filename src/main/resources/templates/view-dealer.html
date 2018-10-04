@@ -20,6 +20,7 @@
        			<td th:text="${car.type}"></td> 
        			<td th:text="${car.price}"></td>
        			<td th:text="${car.amount}"></td>
+       			<td><a th:href="@{'/car/update/' + ${car.id}}">Update Car</a></td>
        			<td><a th:href="@{'/car/delete/' + ${car.id}}">Delete Car</a></td>
    			</tr>
    		</table>
@@ -27,7 +28,8 @@
 		<a th:href="@{'/car/add/' + ${dealer.id}}">Add Car</a>
 		<p></p>
 		<a th:href="@{'/dealer/delete/'}+ ${dealer.id}">Delete Dealer</a>
-		
+		<p></p>
+		<a th:href="@{/}">Kembali</a>
 		
 	</body>
 </html>

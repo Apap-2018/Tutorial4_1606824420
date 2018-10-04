@@ -29,4 +29,13 @@ public class CarServiceImpl implements CarService {
 	public CarModel getCar(Long id) {
 		return carDb.findById(id).get();
 	}
+	@Override
+	public void updateCar(long id, CarModel newCar) {
+		CarModel temp = carDb.getOne(id);
+		temp.setBrand(newCar.getBrand());
+		temp.setType(newCar.getType());
+		temp.setPrice(newCar.getPrice());
+		temp.setAmount(newCar.getAmount());
+		carDb.save(temp);
+	}
 }

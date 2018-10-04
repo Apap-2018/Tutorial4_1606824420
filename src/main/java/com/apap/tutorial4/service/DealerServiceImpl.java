@@ -46,5 +46,11 @@ public class DealerServiceImpl implements DealerService{
 	public void deleteDealer(DealerModel dealer) {
 		dealerDb.delete(dealer);
 	}
-
+	@Override
+	public void updateDealer(long id, Optional<DealerModel> newDealer) {
+		DealerModel temp = dealerDb.getOne(id);
+		temp.setAlamat(newDealer.get().getAlamat());
+		temp.setNoTelp(newDealer.get().getNoTelp());
+		dealerDb.save(temp);
+	}
 }

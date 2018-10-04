@@ -19,4 +19,6 @@ public interface DealerService {
 	List<DealerModel> getAllDealer();
 
 	DealerDb allDealer();
+
+	void updateDealer(long id, Optional<DealerModel> dealer);
 }

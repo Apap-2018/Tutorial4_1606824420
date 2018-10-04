@@ -1,7 +1,8 @@
 package com.apap.tutorial4.controller;
 
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -62,8 +63,34 @@ public class DealerController {
 		if(dealerService.getDealerDetailById(dealerId).isPresent()) {
 			DealerModel temp = dealerService.getDealerDetailById(dealerId).get();
 			dealerService.deleteDealer(temp);
-			return "delete";
+			return "deleteDealer";
 			}
 		return "error";
 	}
+	@RequestMapping(value = "/dealer/update/{id}", method = RequestMethod.GET)
+	private String updateDealer(@PathVariable(value = "id") long id, Model model) {
+		DealerModel dealer = dealerService.getDealerDetailById(id).get();
+		model.addAttribute("dealer",dealer);
+		return "update-dealer";
+	}
+	
+	@RequestMapping(value = "/dealer/update/{id}", method = RequestMethod.POST)
+	private String updateDealerSubmit(@PathVariable (value = "id") long id, @ModelAttribute Optional<DealerModel> dealer) {
+		if(dealer.isPresent()) {
+			dealerService.updateDealer(id, dealer);
+			return "update";
+		}
+		return "error";
+	}
+	
+	public static Comparator<CarModel> comparePrice = new Comparator<CarModel>() {
+		  public int compare(CarModel o1, CarModel o2) {
+		   Long price1 =o1.getPrice();
+		   Long price2 = o2.getPrice();
+		   
+		   return price1.compareTo(price2);
+		  }
+	};
+
+	
 }

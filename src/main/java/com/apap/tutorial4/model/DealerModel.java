@@ -24,7 +24,7 @@ public class DealerModel implements Serializable  {
 	@Column(name = "no_tlp", nullable = false)
 	private String noTelp;
 	
-	@OneToMany (mappedBy = "dealer", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@OneToMany (mappedBy = "dealer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<CarModel> listCar;
 
 	public long getId() {
