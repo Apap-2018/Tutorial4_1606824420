@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>View Dealer</title>
+	</head>
+	<body>
+		<h3 th:text="'Alamat: ' + ${dealer.alamat}"></h3>
+		<h3 th:text="'Telepon: ' + ${dealer.noTelp}"></h3>
+		<a th:href="@{/car/add/{id}(id=${dealer.id})}">Add car</a>
+	</body>
+</html>
